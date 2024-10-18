@@ -16,7 +16,14 @@ const orderRoutes = require('../routes/Order-Routes');
 
 // Middlewares
 
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000', // Change this to your frontend URL in production
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
+    credentials: true, // Allow credentials if needed
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
