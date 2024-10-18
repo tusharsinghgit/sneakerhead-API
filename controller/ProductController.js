@@ -1,4 +1,6 @@
-const BASE_URL = 'http://192.168.17.250:5000/uploads';
+// const BASE_URL = 'http://192.168.17.250:5000/uploads';
+
+const BASE_URL = process.env.BASE_URL || 'https://sneakerhead-api.vercel.app/uploads';
 
 const Product = require('../model/Product');
 

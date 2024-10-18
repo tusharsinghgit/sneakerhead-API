@@ -4,6 +4,9 @@ node_modules/
 # Ignore environment files
 .env
 
+# Ignore the backend.zip file
+backend.zip
+
 # Ignore log files
 *.log
 logs/
