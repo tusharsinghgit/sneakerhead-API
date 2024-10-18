@@ -17,7 +17,7 @@ const orderRoutes = require('../routes/Order-Routes');
 // Middlewares
 
 const corsOptions = {
-    origin: 'http://localhost:3000', // Change this to your frontend URL in production
+    origin: '*', // Change this to your frontend URL in production
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
     credentials: true, // Allow credentials if needed
 };
