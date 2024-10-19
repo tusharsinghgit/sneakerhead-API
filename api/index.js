@@ -26,6 +26,11 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // Allow preflight requests
 
 app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.send('Welcome to the Sneakerhead API! Use /api/products to access products.');
+});
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/products',productRoutes);
