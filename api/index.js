@@ -66,6 +66,10 @@ app.use('/api/orders', orderRoutes);
 //         res.status(500).json({ error: error.message });
 //     }
 // });
+
+app.get('/', (req, res) => {
+    res.send('Welcome to the Sneakerhead API! Use /api/products to access products.');
+});
   
 
 const port = process.env.PORT || 5000;
