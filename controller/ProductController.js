@@ -157,6 +157,21 @@ const getAllProducts = async (req,res) => {
 
 };
 
+const getDistinctProducts = async (req,res) => {
+
+    try{
+        const products = await Product.find().distinct("brand");
+        products.forEach(product => {
+            product.images = product.images.map(image => `${BASE_URL}/${image}`);
+        });
+        res.json(products);
+
+    }catch(err){
+        res.status(500).json({message:err.message});
+    }
+
+};
+
 const getProductsByBrand = async (req,res) => {
 
     try{
@@ -176,7 +191,6 @@ const getProductsByBrand = async (req,res) => {
 const getCollabProducts = async(req,res) => {
 
     try{
-
         const products = await Product.find({type:'collab'});
         products.forEach(product => {
             product.images = product.images.map(image => `${BASE_URL}/${image}`);
@@ -207,6 +221,7 @@ const getProductById = async(req,res) => {
 
 module.exports = {
     getAllProducts,
+    getDistinctProducts,
     getProductsByBrand,
     getCollabProducts,
     getProductById,

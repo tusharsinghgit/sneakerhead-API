@@ -13,6 +13,7 @@ const router = express.Router();
 const ProductController = require('../controller/ProductController');
 
 router.get('/',ProductController.getAllProducts);
+router.get('/distinct-product',ProductController.getDistinctProducts);
 router.get('/by-brand',ProductController.getProductsByBrand);
 router.get('/collab',ProductController.getCollabProducts);
 router.get('/:id',ProductController.getProductById);
