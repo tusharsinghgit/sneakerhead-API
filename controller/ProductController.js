@@ -157,20 +157,28 @@ const getAllProducts = async (req,res) => {
 
 };
 
-const getDistinctProducts = async (req,res) => {
+const getDistinctProducts = async (req, res) => {
+    try {
+        
+        const brands = await Product.find().distinct("brand");
 
-    try{
-        const products = await Product.find().distinct("brand");
-        products.forEach(product => {
-            product.images = product.images.map(image => `${BASE_URL}/${image}`);
-        });
-        res.json(products);
+        const products = await Promise.all(
+            brands.map(async (brand) => {
+                const product = await Product.findOne({ brand });
+                if (product && product.images) {
+                    product.images = product.images.map(image => `${BASE_URL}/${image}`);
+                }
+                return product;
+            })
+        );
 
-    }catch(err){
-        res.status(500).json({message:err.message});
+        res.json(products.filter(product => product !== null));
+
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-
 };
+
 
 const getProductsByBrand = async (req,res) => {
 
